@@ -3,7 +3,7 @@
 function App() {
   
 
-  return <h1>Hello World</h1>
+  return <h1>Hello World from React</h1>
    }
 
 export default App
