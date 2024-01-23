@@ -1,4 +1,4 @@
-import { useState, useCallback,useEffect,useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 import "./App.css";
 
@@ -10,27 +10,27 @@ function App() {
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    if (numAllowed) str += "0123456789"
-    if (charAllowed) str += "!@#$%^&*-_+=[]{}~"
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    if (numAllowed) str += "0123456789";
+    if (charAllowed) str += "!@#$%^&*-_+=[]{}~";
 
     for (let i = 1; i <= length; i++) {
-      let char = Math.floor(Math.random() * str.length + 1)
-      pass += str.charAt(char)
+      let char = Math.floor(Math.random() * str.length + 1);
+      pass += str.charAt(char);
     }
-    setPassword(pass)
-  }, [length, numAllowed, charAllowed, setPassword])
+    setPassword(pass);
+  }, [length, numAllowed, charAllowed, setPassword]);
 
-  const passwordRef= useRef(null)
+  const passwordRef = useRef(null);
 
-  const copypasswordToClipboard=useCallback(()=>{
-    passwordRef.current?.select()
-    window.navigator.clipboard.writeText(password)
-  },[password])
+  const copypasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
 
-  useEffect(()=>{
-    passwordGenerator()
-  },[length,numAllowed,charAllowed,passwordGenerator])
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numAllowed, charAllowed, passwordGenerator]);
 
   return (
     <>
@@ -46,9 +46,11 @@ function App() {
             placeholder="password"
             readOnly
             ref={passwordRef}
-
           />
-          <button onClick={copypasswordToClipboard} className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+          <button
+            onClick={copypasswordToClipboard}
+            className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0 hover:bg-yellow-700"
+          >
             copy
           </button>
         </div>
